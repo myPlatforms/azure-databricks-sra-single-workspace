@@ -1,4 +1,4 @@
-# Azure Databricks 단일 워크스페이스 SRA · 사설 PostgreSQL CDC · OpenSharing D2D — Terraform 예제 (비공식)
+# Azure Databricks 단일 워크스페이스 SRA · 사설 PostgreSQL CDC · OpenSharing D2D — Terraform 예제
 
 Azure Databricks에서 아래 구성을 Terraform으로 배포하는 **비공식 예제**와 한국어 구성 가이드입니다.
 
