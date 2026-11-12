@@ -1,0 +1,23 @@
+# Sample source: Azure Database for PostgreSQL Flexible Server (VNet integration) in
+# its own VNet, peered to the provider workspace VNet. Apply envs/sra-provider first.
+# Skip this stack when the source database already exists (see the guide).
+
+subscription_id = "<azure-subscription-id>"
+tenant_id       = "<tenant-id-or-domain>"
+location        = "<provider-region>"
+
+resource_group_name = "<resource-group>" # e.g. rg-sra-provider-pg
+prefix              = "<prefix>"         # server <prefix>-<random>, zone <prefix>.private.postgres.database.azure.com
+
+tags = {
+  owner   = "<owner>"
+  project = "<project>"
+}
+
+# Must not overlap either workspace VNet (peering).
+vnet_cidr      = "<source-vnet-cidr>" # e.g. 10.30.0.0/22
+pg_subnet_cidr = "<pg-subnet-cidr>"   # e.g. 10.30.0.0/24
+
+# max_slot_wal_keep_size_mb: leave unset. Azure Database for PostgreSQL fixes
+# max_slot_wal_keep_size at -1 (read-only): keep the ingestion gateway running and
+# monitor the slot (guide 1.9).

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" font-family="'Noto Sans KR', sans-serif" font-size="13">
+  <defs>
+    <marker id="b1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1B3139"/></marker>
+    <marker id="b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#FF3621"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1200" height="620" fill="#FFFFFF"/>
+  <text x="20" y="30" font-size="18" font-weight="700" fill="#0B2026">2단계 · OpenSharing D2D + SecureConnect / 부록 A · 수신 리전 → 원천 PostgreSQL</text>
+
+  <!-- provider -->
+  <rect x="20" y="50" width="520" height="550" rx="10" fill="#F7F5F2" stroke="#E3E0DA"/>
+  <text x="36" y="76" font-weight="700" fill="#0B2026">제공자 · &lt;provider-region&gt;</text>
+  <rect x="40" y="92" width="480" height="120" rx="8" fill="#FFFFFF" stroke="#8FB4CC"/>
+  <text x="280" y="116" text-anchor="middle" font-weight="700">제공자 메타스토어</text>
+  <text x="280" y="140" text-anchor="middle" fill="#0B2026">share = 관리형 테이블 (WITH HISTORY) + 뷰</text>
+  <text x="280" y="162" text-anchor="middle" fill="#0B2026">recipient (DATABRICKS, SecureConnect ON)</text>
+  <text x="280" y="186" text-anchor="middle" fill="#5A6F77">외부 공유 허용 · 토큰 수명 1일(D2O 전용)</text>
+  <rect x="290" y="228" width="230" height="110" rx="8" fill="#FFEDE9" stroke="#FF8A75"/>
+  <text x="405" y="252" text-anchor="middle" font-weight="700" fill="#E02E1B">OpenSharing NCC</text>
+  <text x="405" y="274" text-anchor="middle" fill="#0B2026">메타스토어에 연결</text>
+  <text x="405" y="294" text-anchor="middle" fill="#0B2026">워크스페이스 미바인딩</text>
+  <text x="405" y="316" text-anchor="middle" fill="#0B2026">PE blob · dfs</text>
+  <rect x="40" y="228" width="230" height="110" rx="8" fill="#FFFFFF" stroke="#0B2026"/>
+  <text x="155" y="252" text-anchor="middle" font-weight="700">UC 루트 스토리지</text>
+  <text x="155" y="274" text-anchor="middle" fill="#5A6F77">공개 접근 차단 유지</text>
+  <text x="155" y="294" text-anchor="middle" fill="#5A6F77">공유용 스키마 (관리형 Delta)</text>
+  <rect x="40" y="360" width="480" height="220" rx="8" fill="#FFFFFF" stroke="#E3E0DA"/>
+  <text x="280" y="384" text-anchor="middle" font-weight="700">원천 VNet · PostgreSQL (VNet 통합)</text>
+  <text x="280" y="408" text-anchor="middle" fill="#0B2026">원천 테이블 → Federation CTAS → 공유용 스키마</text>
+  <text x="280" y="432" text-anchor="middle" fill="#0B2026">결과 반영 스키마 (부록 A의 쓰기 대상)</text>
+  <text x="280" y="460" text-anchor="middle" fill="#5A6F77">NSG 5432 허용 = 제공자 host·container·PNG</text>
+  <text x="280" y="480" text-anchor="middle" fill="#5A6F77">+ 수신자 host·container·PNG (별도 스택이 추가)</text>
+  <text x="280" y="504" text-anchor="middle" fill="#5A6F77">Private DNS 영역 → 두 워크스페이스 VNet 연결</text>
+
+  <!-- proxy -->
+  <rect x="580" y="200" width="180" height="120" rx="10" fill="#0B2026"/>
+  <text x="670" y="236" text-anchor="middle" font-weight="700" fill="#FFFFFF">SecureConnect</text>
+  <text x="670" y="258" text-anchor="middle" fill="#FFFFFF">관리형 프록시</text>
+  <text x="670" y="284" text-anchor="middle" fill="#FF8A75">pre-signed URL</text>
+  <text x="670" y="304" text-anchor="middle" fill="#FF8A75">리전 간 · mTLS(서버리스)</text>
+
+  <!-- recipient -->
+  <rect x="800" y="50" width="380" height="550" rx="10" fill="#F7F5F2" stroke="#E3E0DA"/>
+  <text x="816" y="76" font-weight="700" fill="#0B2026">수신자 · &lt;recipient-region&gt;</text>
+  <rect x="820" y="92" width="340" height="120" rx="8" fill="#FFFFFF" stroke="#8FB4CC"/>
+  <text x="990" y="116" text-anchor="middle" font-weight="700">수신자 메타스토어</text>
+  <text x="990" y="140" text-anchor="middle" fill="#0B2026">공유 카탈로그 (share 기반, 읽기 전용)</text>
+  <text x="990" y="164" text-anchor="middle" fill="#0B2026">UC 연결 (Federation)</text>
+  <rect x="820" y="228" width="340" height="110" rx="8" fill="#FFFFFF" stroke="#8FB4CC"/>
+  <text x="990" y="252" text-anchor="middle" font-weight="700">서버리스 (SQL · Job 태스크)</text>
+  <text x="990" y="274" text-anchor="middle" fill="#0B2026">공유 데이터 읽기 = 방화벽 설정 불필요</text>
+  <text x="990" y="296" text-anchor="middle" fill="#0B2026">PG 쓰기 = PNG(목적지 PG FQDN)</text>
+  <rect x="820" y="360" width="340" height="220" rx="8" fill="#FFFFFF" stroke="#E3E0DA"/>
+  <text x="990" y="384" text-anchor="middle" font-weight="700">수신자 워크스페이스 VNet</text>
+  <text x="990" y="408" text-anchor="middle" fill="#0B2026">host · container (클래식 Job: Spark JDBC)</text>
+  <text x="990" y="430" text-anchor="middle" fill="#0B2026">PNG 서브넷 /28</text>
+  <text x="990" y="454" text-anchor="middle" fill="#5A6F77">NAT 출구 (클래식 수신자는 출구 방화벽 시</text>
+  <text x="990" y="474" text-anchor="middle" fill="#5A6F77">제공자 리전 제어 영역 IP 허용)</text>
+
+  <!-- arrows -->
+  <line x1="288" y1="283" x2="272" y2="283" stroke="#FF3621" stroke-width="2" marker-end="url(#b2)"/>
+  <line x1="578" y1="260" x2="522" y2="260" stroke="#FF3621" stroke-width="2" marker-end="url(#b2)"/>
+  <line x1="818" y1="270" x2="762" y2="260" stroke="#FF3621" stroke-width="2" marker-end="url(#b2)"/>
+  <text x="560" y="190" fill="#E02E1B">D2D 공유 읽기</text>
+  <line x1="818" y1="470" x2="522" y2="470" stroke="#0B2026" stroke-width="3" marker-start="url(#b1)" marker-end="url(#b1)"/>
+  <text x="590" y="458" font-weight="700" fill="#0B2026">글로벌 VNet 피어링</text>
+  <text x="590" y="494" fill="#5A6F77">클래식 · PNG 트래픽 → PG 5432</text>
+  <line x1="990" y1="338" x2="990" y2="358" stroke="#1B3139" stroke-width="2" marker-end="url(#b1)"/>
+</svg>

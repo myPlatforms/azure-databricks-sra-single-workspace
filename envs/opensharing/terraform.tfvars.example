@@ -1,0 +1,16 @@
+# Apply after both workspace stacks and the shared data (samples/opensharing).
+databricks_account_id      = "<databricks-account-id>"
+databricks_account_profile = "<account-profile>"
+
+name_prefix            = "<prefix>"                  # e.g. sra_provider
+source_schema          = "<catalog>.<share-schema>"  # e.g. <catalog>.aw_share
+recipient_name         = "<recipient>"
+recipient_catalog_name = "<shared-catalog>"
+
+# Step D (after the UI steps B and C)
+# enable_recipient = true
+# The recipient sharing identifier comes from envs/sra-recipient; override only if needed:
+# recipient_global_metastore_id = "azure:<recipient-region>:<metastore-id>"
+
+# Step E (databricks providers list on the recipient workspace)
+# recipient_provider_name = "<provider-name>"

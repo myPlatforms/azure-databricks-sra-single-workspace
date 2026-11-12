@@ -1,0 +1,39 @@
+# Recipient-region workspace. Same code as envs/sra-provider; only the values differ.
+# Copy to terraform.tfvars and fill in. *.tfvars is git-ignored.
+
+subscription_id = "<azure-subscription-id>"
+tenant_id       = "<tenant-id-or-domain>"
+location        = "<recipient-region>" # e.g. germanywestcentral
+
+resource_group_name = "<resource-group>" # e.g. rg-sra-recipient
+prefix              = "<prefix>"         # e.g. sra-recipient
+workspace_name      = "<workspace-name>"
+
+tags = {
+  owner   = "<owner>"
+  project = "<project>"
+}
+
+# Must not overlap the provider workspace VNet or the source VNet (global peering in 부록 A).
+vnet_cidr = "<workspace-vnet-cidr>" # e.g. 10.20.0.0/20
+subnet_cidrs = {
+  host        = "<host-cidr>"        # e.g. 10.20.0.0/22
+  container   = "<container-cidr>"   # e.g. 10.20.4.0/22
+  privatelink = "<privatelink-cidr>" # e.g. 10.20.8.0/26
+}
+
+databricks_account_id      = "<databricks-account-id>"
+databricks_account_profile = "<account-profile>"
+
+catalog_name = "<starter-catalog>"
+
+client_allowed_cidrs = [
+  "<cidr>",
+]
+
+# 부록 A only: serverless -> the provider-region PostgreSQL (Public Preview).
+# enable_private_network_gateway = true
+# png_subnet_cidr                = "<png-subnet-cidr>" # e.g. 10.20.8.64/28
+# png_destinations               = ["<pg-fqdn>"]
+
+# uc_storage_bypass_azure_services = false

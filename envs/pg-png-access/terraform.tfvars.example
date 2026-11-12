@@ -1,0 +1,10 @@
+# Apply after envs/sra-provider (with the private network gateway) and envs/pg-source.
+subscription_id = "<azure-subscription-id>"
+tenant_id       = "<tenant-id-or-domain>"
+
+# Existing database instead of envs/pg-source:
+# pg_state_path          = null
+# pg_resource_group_name = "<pg-resource-group>"
+# pg_vnet_name           = "<pg-vnet>"
+# pg_subnet_name         = "<pg-subnet>"
+# pg_nsg_name            = "<pg-subnet-nsg>"

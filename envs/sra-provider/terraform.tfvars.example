@@ -1,0 +1,55 @@
+# Provider-region workspace (it also hosts the source PostgreSQL and the share).
+# Copy to terraform.tfvars and fill in. *.tfvars is git-ignored.
+
+subscription_id = "<azure-subscription-id>"
+tenant_id       = "<tenant-id-or-domain>"
+location        = "<provider-region>" # e.g. koreacentral
+
+resource_group_name = "<resource-group>" # e.g. rg-sra-provider
+prefix              = "<prefix>"         # e.g. sra-provider (letters, digits, dashes)
+workspace_name      = "<workspace-name>"
+
+# Azure tag names are case-insensitive: do not add both "owner" and "Owner".
+tags = {
+  owner   = "<owner>"
+  project = "<project>"
+}
+
+# Workspace VNet: host and container /22 each, privatelink /26, and room for a /28
+# private network gateway subnet. Must not overlap the source VNet or the other
+# region's workspace VNet (they are peered).
+vnet_cidr = "<workspace-vnet-cidr>" # e.g. 10.10.0.0/20
+subnet_cidrs = {
+  host        = "<host-cidr>"        # e.g. 10.10.0.0/22
+  container   = "<container-cidr>"   # e.g. 10.10.4.0/22
+  privatelink = "<privatelink-cidr>" # e.g. 10.10.8.0/26
+}
+
+databricks_account_id      = "<databricks-account-id>"
+databricks_account_profile = "<account-profile>" # ~/.databrickscfg entry for accounts.azuredatabricks.net
+
+catalog_name = "<starter-catalog>" # created on the second apply
+
+# Workspace IP access list (second apply): egress ranges of the users AND of the
+# machine running Terraform. Prefer ranges over a single /32 - VPN egress IPs move.
+# The NAT gateway IP is added by the module.
+client_allowed_cidrs = [
+  "<cidr>",
+]
+
+# Provider metastore: OpenSharing outside the account must be allowed for the
+# SecureConnect NCC setting (guide 2단계). Keep it in sync with the account console.
+metastore_delta_sharing = {
+  scope                            = "INTERNAL_AND_EXTERNAL"
+  recipient_token_lifetime_seconds = 86400
+}
+
+# Re-apply after envs/pg-source: serverless -> the private PostgreSQL (Public Preview).
+# enable_private_network_gateway = true
+# png_subnet_cidr                = "<png-subnet-cidr>" # /28 inside vnet_cidr, e.g. 10.10.8.64/28
+# png_destinations               = ["<pg-fqdn>"]       # pg_fqdn output of envs/pg-source
+
+# Production: turn off the trusted-services exception on the UC storage firewall.
+# uc_storage_bypass_azure_services = false
+
+# Second apply: workspace_url goes in runtime.auto.tfvars (see the guide).

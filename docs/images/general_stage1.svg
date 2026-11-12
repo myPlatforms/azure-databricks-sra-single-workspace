@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="'Noto Sans KR', sans-serif" font-size="13">
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1B3139"/></marker>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#FF3621"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1200" height="700" fill="#FFFFFF"/>
+  <text x="20" y="30" font-size="18" font-weight="700" fill="#0B2026">1단계 · 단일 워크스페이스 SRA + 사설 PostgreSQL</text>
+
+  <!-- Users -->
+  <rect x="20" y="60" width="200" height="70" rx="8" fill="#F7F5F2" stroke="#E3E0DA"/>
+  <text x="120" y="90" text-anchor="middle" font-weight="700" fill="#0B2026">사용자 (인터넷)</text>
+  <text x="120" y="112" text-anchor="middle" fill="#5A6F77">브라우저 · API · Terraform</text>
+
+  <!-- Databricks managed -->
+  <rect x="280" y="50" width="900" height="200" rx="10" fill="#F3F7FA" stroke="#8FB4CC"/>
+  <text x="296" y="74" font-weight="700" fill="#1B5162">Azure Databricks (관리형)</text>
+  <rect x="300" y="90" width="230" height="140" rx="8" fill="#FFFFFF" stroke="#8FB4CC"/>
+  <text x="415" y="116" text-anchor="middle" font-weight="700" fill="#0B2026">워크스페이스 UI·API</text>
+  <text x="415" y="140" text-anchor="middle" fill="#5A6F77">프런트엔드 = 공개</text>
+  <text x="415" y="160" text-anchor="middle" fill="#5A6F77">IP 접근 목록으로 제한</text>
+  <text x="415" y="184" text-anchor="middle" fill="#5A6F77">Unity Catalog</text>
+  <text x="415" y="204" text-anchor="middle" fill="#5A6F77">(전용 메타스토어)</text>
+  <rect x="560" y="90" width="600" height="140" rx="8" fill="#FFFFFF" stroke="#8FB4CC"/>
+  <text x="860" y="114" text-anchor="middle" font-weight="700" fill="#0B2026">서버리스 컴퓨트 (SQL · 노트북 · 파이프라인)</text>
+  <rect x="580" y="128" width="270" height="88" rx="6" fill="#FFEDE9" stroke="#FF8A75"/>
+  <text x="715" y="152" text-anchor="middle" font-weight="700" fill="#E02E1B">NCC</text>
+  <text x="715" y="174" text-anchor="middle" fill="#0B2026">PE 규칙: UC·워크스페이스 스토리지</text>
+  <text x="715" y="194" text-anchor="middle" fill="#0B2026">네트워크 정책 RESTRICTED</text>
+  <rect x="870" y="128" width="270" height="88" rx="6" fill="#FFEDE9" stroke="#FF8A75"/>
+  <text x="1005" y="152" text-anchor="middle" font-weight="700" fill="#E02E1B">Private Network Gateway</text>
+  <text x="1005" y="174" text-anchor="middle" fill="#0B2026">목적지 = PostgreSQL FQDN 1개</text>
+  <text x="1005" y="194" text-anchor="middle" fill="#0B2026">(Public Preview)</text>
+
+  <!-- Customer subscription -->
+  <rect x="20" y="280" width="1160" height="400" rx="10" fill="#FFFFFF" stroke="#0B2026" stroke-dasharray="6 4"/>
+  <text x="36" y="304" font-weight="700" fill="#0B2026">고객 구독 · &lt;provider-region&gt;</text>
+
+  <!-- Workspace VNet -->
+  <rect x="40" y="320" width="700" height="340" rx="8" fill="#F7F5F2" stroke="#E3E0DA"/>
+  <text x="56" y="344" font-weight="700" fill="#0B2026">워크스페이스 VNet &lt;workspace-vnet-cidr&gt;</text>
+  <rect x="60" y="360" width="200" height="110" rx="6" fill="#FFFFFF" stroke="#E3E0DA"/>
+  <text x="160" y="384" text-anchor="middle" font-weight="700">host · container</text>
+  <text x="160" y="406" text-anchor="middle" fill="#5A6F77">클래식 컴퓨트 (SCC)</text>
+  <text x="160" y="426" text-anchor="middle" fill="#5A6F77">/22 + /22, Databricks 위임</text>
+  <text x="160" y="450" text-anchor="middle" fill="#5A6F77">LFC Gateway · Job 클러스터</text>
+  <rect x="280" y="360" width="230" height="160" rx="6" fill="#FFFFFF" stroke="#E3E0DA"/>
+  <text x="395" y="384" text-anchor="middle" font-weight="700">privatelink /26</text>
+  <text x="395" y="408" text-anchor="middle" fill="#0B2026">PE databricks_ui_api (백엔드)</text>
+  <text x="395" y="430" text-anchor="middle" fill="#0B2026">PE 워크스페이스 스토리지 dfs·blob</text>
+  <text x="395" y="452" text-anchor="middle" fill="#0B2026">PE UC 스토리지 dfs·blob</text>
+  <text x="395" y="478" text-anchor="middle" fill="#5A6F77">privatelink.azuredatabricks.net</text>
+  <text x="395" y="498" text-anchor="middle" fill="#5A6F77">privatelink.{dfs,blob}.core…</text>
+  <rect x="530" y="360" width="190" height="80" rx="6" fill="#FFFFFF" stroke="#FF8A75"/>
+  <text x="625" y="384" text-anchor="middle" font-weight="700">PNG 서브넷 /28</text>
+  <text x="625" y="406" text-anchor="middle" fill="#5A6F77">Databricks 위임</text>
+  <text x="625" y="426" text-anchor="middle" fill="#5A6F77">게이트웨이 NIC</text>
+  <rect x="60" y="490" width="200" height="60" rx="6" fill="#FFFFFF" stroke="#E3E0DA"/>
+  <text x="160" y="515" text-anchor="middle" font-weight="700">NAT Gateway</text>
+  <text x="160" y="535" text-anchor="middle" fill="#5A6F77">클래식 출구 고정 IP</text>
+
+  <!-- Storage -->
+  <rect x="60" y="570" width="300" height="76" rx="6" fill="#FFFFFF" stroke="#0B2026"/>
+  <text x="210" y="594" text-anchor="middle" font-weight="700">워크스페이스 스토리지 (관리 RG)</text>
+  <text x="210" y="616" text-anchor="middle" fill="#5A6F77">스토리지 방화벽 ON → 공개 접근 차단</text>
+  <text x="210" y="634" text-anchor="middle" fill="#5A6F77">전용 Access Connector</text>
+  <rect x="380" y="570" width="340" height="76" rx="6" fill="#FFFFFF" stroke="#0B2026"/>
+  <text x="550" y="594" text-anchor="middle" font-weight="700">UC 루트 스토리지 (ADLS Gen2)</text>
+  <text x="550" y="616" text-anchor="middle" fill="#5A6F77">public network access = Disabled</text>
+  <text x="550" y="634" text-anchor="middle" fill="#5A6F77">Access Connector + 파일 이벤트 역할</text>
+
+  <!-- Ingestion VNet -->
+  <rect x="790" y="320" width="370" height="230" rx="8" fill="#F7F5F2" stroke="#E3E0DA"/>
+  <text x="806" y="344" font-weight="700" fill="#0B2026">원천 VNet &lt;source-vnet-cidr&gt;</text>
+  <rect x="810" y="360" width="330" height="170" rx="6" fill="#FFFFFF" stroke="#E3E0DA"/>
+  <text x="975" y="384" text-anchor="middle" font-weight="700">PostgreSQL 서브넷 (Flexible Server 위임)</text>
+  <text x="975" y="410" text-anchor="middle" fill="#0B2026">Azure Database for PostgreSQL</text>
+  <text x="975" y="430" text-anchor="middle" fill="#0B2026">Flexible Server · VNet 통합</text>
+  <text x="975" y="452" text-anchor="middle" fill="#5A6F77">공개 접근 없음 · wal_level=logical</text>
+  <text x="975" y="474" text-anchor="middle" fill="#5A6F77">NSG: 5432 = Databricks 서브넷만</text>
+  <text x="975" y="498" text-anchor="middle" fill="#5A6F77">Private DNS 영역 → 두 VNet에 연결</text>
+  <text x="975" y="518" text-anchor="middle" fill="#5A6F77">원천 데이터베이스</text>
+
+  <!-- arrows -->
+  <line x1="220" y1="95" x2="298" y2="120" stroke="#1B3139" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="228" y="80" fill="#1B3139">HTTPS</text>
+  <line x1="395" y1="360" x2="395" y2="232" stroke="#1B3139" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="388" y="300" text-anchor="end" fill="#1B3139">백엔드 Private Link</text>
+  <polyline points="600,216 600,300 520,300 520,566" fill="none" stroke="#FF3621" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#a2)"/>
+  <text x="608" y="296" fill="#E02E1B">NCC PE (서버리스→스토리지)</text>
+  <line x1="1005" y1="216" x2="680" y2="358" stroke="#FF3621" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#a2)"/>
+  <text x="1012" y="236" fill="#E02E1B">PNG (서버리스→VNet)</text>
+  <line x1="740" y1="445" x2="788" y2="445" stroke="#0B2026" stroke-width="3" marker-start="url(#a1)" marker-end="url(#a1)"/>
+  <text x="744" y="470" font-weight="700" fill="#0B2026">VNet</text>
+  <text x="744" y="488" font-weight="700" fill="#0B2026">피어링</text>
+  <line x1="260" y1="440" x2="278" y2="440" stroke="#1B3139" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="395" y1="522" x2="395" y2="568" stroke="#1B3139" stroke-width="2" marker-end="url(#a1)"/>
+</svg>

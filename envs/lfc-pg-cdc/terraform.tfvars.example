@@ -1,0 +1,24 @@
+# Apply after envs/sra-provider (second apply done) and envs/pg-source.
+# databricks_workspace_profile = "<workspace-profile>"
+
+name_prefix        = "<prefix>"             # e.g. sra-provider
+destination_schema = "<destination-schema>" # e.g. adventureworks
+# catalog_name     = "<catalog>"            # default: starter catalog of envs/sra-provider
+
+# Step 1: false -> run the load job (sample) -> Step 2: true
+enable_ingestion = false
+
+# Run the triggered ingestion pipeline every hour (the gateway is always on).
+# ingestion_schedule_cron = "0 0 * * * ?"
+# ingestion_schedule_timezone = "Asia/Seoul"
+
+# ---- Existing database instead of envs/pg-source ----
+# pg_state_path      = null
+# enable_sample_jobs = false
+# source_schemas     = ["public"]
+# pg_connection = {
+#   host                 = "<pg-fqdn>"
+#   database             = "<database>"
+#   replication_user     = "<replication-user>"
+#   replication_password = "<replication-password>" # or TF_VAR_pg_connection
+# }

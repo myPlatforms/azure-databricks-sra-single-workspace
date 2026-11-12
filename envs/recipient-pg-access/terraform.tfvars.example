@@ -1,0 +1,27 @@
+# 부록 A: apply after envs/sra-recipient (with the private network gateway,
+# png_destinations = the server FQDN), envs/pg-source and the OpenSharing stack.
+subscription_id = "<azure-subscription-id>"
+tenant_id       = "<tenant-id-or-domain>"
+
+name_prefix  = "<prefix>" # e.g. sra-recipient
+source_table = "<shared-catalog>.<share-schema>.v_orders_europe"
+
+# Roles created by the database team (or TF_VAR_pg_reader / TF_VAR_pg_writer):
+#   reader: SELECT on the schemas to query
+#   writer: CREATE SCHEMA reporting AUTHORIZATION <db-owner>;
+#           GRANT USAGE, CREATE ON SCHEMA reporting TO <writer>;
+pg_reader = { user = "<reader>", password = "<reader-password>" }
+pg_writer = { user = "<writer>", password = "<writer-password>" }
+
+# Sample database only (envs/pg-source): use the server admin instead.
+# use_admin_credentials = true
+
+# Existing database instead of envs/pg-source:
+# pg_state_path            = null
+# pg_resource_group_name   = "<pg-resource-group>"
+# pg_vnet_name             = "<pg-vnet>"
+# pg_subnet_name           = "<pg-subnet>"
+# pg_nsg_name              = "<pg-subnet-nsg>"
+# pg_private_dns_zone_name = "<zone>.private.postgres.database.azure.com"
+# pg_host                  = "<pg-fqdn>"
+# pg_database              = "<database>"
